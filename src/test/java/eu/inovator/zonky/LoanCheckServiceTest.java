@@ -46,9 +46,9 @@ public class LoanCheckServiceTest {
     public void testGetNewLoans() throws Exception {
         when(zonkyClient.getLoansAfter(any())).thenReturn(createLoanList());
         List<Loan> newLoans = loanCheckService.getNewLoans(ZonedDateTime.now());
-        Assert.assertTrue(newLoans.size() == 1);
+        Assert.assertTrue(newLoans.size() == 3);
         Loan loan = newLoans.iterator().next();
-        Assert.assertEquals(Integer.valueOf(2), loan.getId());
+        Assert.assertEquals(Integer.valueOf(1), loan.getId());
     }
 
     @Test
@@ -93,7 +93,7 @@ public class LoanCheckServiceTest {
         loan3.setId(3);
         loan3.setName("Test loan 3");
         loan3.setDatePublished(ZonedDateTime.now().minusSeconds(10));
-        return Arrays.asList(loan1, loan2, loan3);
+        return Arrays.asList(loan3, loan2, loan1);
     }
 
 }
